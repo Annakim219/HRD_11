@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>학사 정보 추가</title>
+<title>학사 정보 목록</title>
 <style>
 th {
 	height: 40px;
@@ -17,6 +17,12 @@ td {
 p{
 	margin-left:5px;
 }
+.cnt{
+	display:table;
+	width:1100px;
+	margin:0 auto;
+	font-size:0.9em;
+}
 </style>
 </head>
 <body>
@@ -24,8 +30,27 @@ p{
 	<%@ include file="/nav.jsp"%>
 	<%@ include file="/DBconn.jsp"%>
 	<section>
+		<%
+			int cnt = 0;
+			
+			try{
+				String sql = "select count(*) from stud1220";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					cnt = rs.getInt(1);
+				}						
+				
+			}catch(SQLException e){
+				System.out.println("cnt 조회 실패");
+				e.printStackTrace();
+			}
+		%>
 		<br>
 		<h3>학사 정보 목록</h3>
+		<div class="cnt">
+			<p>총 <b><%=cnt %>명</b>의 학사정보가 있습니다.</p>
+		</div>
 		<table>
 			<tr>
 				<th width=100>학번</th>
@@ -62,7 +87,7 @@ p{
 				<td><p><%=hobby %></p></td>
 				<td align=center><a href="/HRD_1220/stud1220/updateStud.jsp?studno=<%=studno %>">수정</a>
 				<span>|</span>
-				<a href="/HRD_1220/stud1220/deleteStud.jsp?studno=<%=studno %>">삭제</a></td>
+				<a href="/HRD_1220/stud1220/deleteStud.jsp?studno=<%=studno %>" onclick="if(!confirm('정말로 삭제하시겠습니까?'))	{return false;}">삭제</a></td>
 			</tr>			
 		<%
 				}
@@ -74,7 +99,7 @@ p{
 		%>
 		</table>
 		<div class="btn_group" align=center>
-		<input id="btn2" type="button" value="학사정보 추가" onclick="location.href='/addStud.jsp'">
+		<input id="btn2" type="button" value="학사정보 추가" onclick="location.href='/HRD_1220/stud1220/addStud.jsp'">
 		</div>
 	</section>
 	<%@ include file="/footer.jsp"%>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>학사 정보 추가</title>
+<title>학사 정보 수정</title>
 <style>
 tr{
 	height:30px;
@@ -75,7 +75,7 @@ td{
 
 	<section>
 		<br>
-		<h2>학사 정보 등록 화면</h2>
+		<h2>학사 정보 수정 화면</h2>
 		<form name="form" method="post" action="updateStud_process.jsp">
 			<table>
 				<tr>
@@ -134,7 +134,7 @@ td{
 				</tr>									
 			</table>
 		</form>
-		
+
 				<%
 			}
 			
